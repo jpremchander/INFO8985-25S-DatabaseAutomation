@@ -1,0 +1,26 @@
+name: CI/CD Pipeline for Database Deployment
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.x'
+
+      - name: Install mysql-connector-python
+        run: pip install mysql-connector-python
+
+      - name: Run SQL script to deploy database changes
+        working-directory: Assignment-2
+        run: python3 run_sql.py

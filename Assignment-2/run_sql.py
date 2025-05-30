@@ -1,3 +1,5 @@
+# run_sql.py
+# This script connects to a MySQL database and executes an SQL script file.
 import mysql.connector
 from mysql.connector import Error
 import os
