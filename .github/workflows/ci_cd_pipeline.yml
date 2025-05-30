@@ -18,9 +18,14 @@ jobs:
         with:
           python-version: '3.x'
 
-      - name: Install mysql-connector-python
+      - name: Install dependencies
         run: pip install mysql-connector-python
 
-      - name: Run SQL script to deploy database changes
+      - name: Run SQL scripts
         working-directory: Assignment-2
+        env:
+          DB_HOST: ${{ secrets.DB_HOST }}
+          DB_USER: ${{ secrets.DB_USER }}
+          DB_PASSWORD: ${{ secrets.DB_PASS }}
+          DB_NAME: ${{ secrets.DB_NAME }}
         run: python3 run_sql.py

@@ -1,9 +1,8 @@
-# run_sql.py
-# This script connects to a MySQL database and executes an SQL script file.
+import os
 import mysql.connector
 from mysql.connector import Error
-import os
 
+# Read DB config from environment variables (set in GitHub Actions secrets)
 db_config = {
     'host': os.getenv('DB_HOST'),
     'user': os.getenv('DB_USER'),
@@ -12,6 +11,8 @@ db_config = {
 }
 
 def execute_sql_script(file_path):
+    conn = None
+    cursor = None
     try:
         conn = mysql.connector.connect(**db_config)
         cursor = conn.cursor()
@@ -21,14 +22,15 @@ def execute_sql_script(file_path):
 
         for command in sql_commands:
             if command.strip():
+                print(f"Executing:\n{command.strip()}\n")
                 cursor.execute(command)
-                print(f"Executed:\n{command.strip()}\n")
 
         conn.commit()
         print("SQL script executed and committed successfully.")
 
     except Error as e:
         print("Error:", e)
+
     finally:
         if cursor:
             cursor.close()
@@ -36,4 +38,5 @@ def execute_sql_script(file_path):
             conn.close()
 
 if __name__ == '__main__':
+    execute_sql_script('projects.sql')
     execute_sql_script('add_departments.sql')
