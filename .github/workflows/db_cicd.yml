@@ -15,6 +15,8 @@ jobs:
         env:
           MYSQL_ROOT_PASSWORD: devpwd123
           MYSQL_DATABASE: companydb
+          MYSQL_USER: devdbuser
+          MYSQL_PASSWORD: devpwd123
         ports:
           - 3306:3306
         options: >-
@@ -24,25 +26,25 @@ jobs:
           --health-retries=3
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v3
+      - name: Checkout code
+        uses: actions/checkout@v3
 
-    - name: Wait for MySQL to be ready
-      run: sleep 30
+      - name: Wait for MySQL to be ready
+        run: sleep 30
 
-    - name: Set up Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10'
+      - name: Set up Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: '3.10'
 
-    - name: Install dependencies
-      run: |
-        pip install mysql-connector-python
+      - name: Install dependencies
+        run: |
+          pip install mysql-connector-python
 
-    - name: List files (debug)
-      working-directory: Assignment-2-New
-      run: ls -l
+      - name: List files (debug)
+        working-directory: Assignment-2-New
+        run: ls -l
 
-    - name: Run schema changes
-      working-directory: Assignment-2-New
-      run: python execute_sql.py
+      - name: Run schema changes
+        working-directory: Assignment-2-New
+        run: python execute_sql.py

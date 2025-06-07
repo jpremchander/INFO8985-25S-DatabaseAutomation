@@ -1,7 +1,5 @@
-import mysql.connector
-from mysql.connector import Error
-
 def execute_sql_script(script_path):
+    connection = None  # define outside try block
     try:
         connection = mysql.connector.connect(
             host='localhost',
@@ -9,25 +7,25 @@ def execute_sql_script(script_path):
             password='devpwd123',
             database='companydb'
         )
-        cursor = connection.cursor()
 
-        with open(script_path, 'r') as file:
-            sql_commands = file.read().split(';')
+        if connection.is_connected():
+            print("Connected to the database.")
+            cursor = connection.cursor()
 
-        for command in sql_commands:
-            command = command.strip()
-            if command:
-                cursor.execute(command)
+            with open(script_path, 'r') as file:
+                sql_script = file.read()
 
-        connection.commit()
-        print("SQL script executed successfully.")
+            for statement in sql_script.split(';'):
+                stmt = statement.strip()
+                if stmt:
+                    cursor.execute(stmt)
+            connection.commit()
+            print("SQL script executed successfully.")
 
     except Error as e:
         print(f"Error: {e}")
-    finally:
-        if connection.is_connected():
-            cursor.close()
-            connection.close()
 
-if __name__ == "__main__":
-    execute_sql_script('schema_changes.sql')
+    finally:
+        if connection and connection.is_connected():
+            connection.close()
+            print("Connection closed.")
