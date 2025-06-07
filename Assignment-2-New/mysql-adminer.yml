@@ -4,7 +4,7 @@ services:
     image: mysql
     restart: always
     environment:
-      MYSQL_ROOT_PASSWORD: Secret5555
+      MYSQL_ROOT_PASSWORD: devpwd123
     # (this is just an example, not intended to be a production configuration)
     ports:
       - 3306:3306

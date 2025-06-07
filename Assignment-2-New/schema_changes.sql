@@ -1,2 +1,9 @@
-CREATE DATABASE IF NOT EXISTS test;
-CREATE DATABASE IF NOT EXISTS test2;
+CREATE TABLE IF NOT EXISTS projects (
+    project_id INT AUTO_INCREMENT PRIMARY KEY,
+    project_name VARCHAR(255) NOT NULL,
+    start_date DATE,
+    end_date DATE
+);
+
+ALTER TABLE projects
+ADD COLUMN IF NOT EXISTS budget DECIMAL(10,2);
