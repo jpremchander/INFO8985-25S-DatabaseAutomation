@@ -3,7 +3,7 @@ name: CI/CD for DB Deployment
 on:
   push:
     branches:
-      - test
+      - main
 
 jobs:
   db-deploy:
