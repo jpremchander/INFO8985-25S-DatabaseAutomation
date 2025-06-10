@@ -1,4 +1,4 @@
-# Assignment 2 - Database Schema Automation with GitHub Actions
+# Assignment 2 - Database Schema Automation with GitHub Actions - REWORK
 
 **Course**: INFO8985-25S - Database Automation  
 **StudentName**: Premchander Jebastian  
