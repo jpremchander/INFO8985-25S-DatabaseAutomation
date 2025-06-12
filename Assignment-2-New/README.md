@@ -1,6 +1,9 @@
-## PROG8850 - Assignment 2  ##
+### PROG8850 - Assignment 2  ###
+
 **Automating Database Schema Changes and Implementing CI/CD for Database Deployment**  
 
+## Prem Chander Jebastian ##
+## 9015480 ##
 
 ---
 
