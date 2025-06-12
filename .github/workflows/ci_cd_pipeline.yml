@@ -1,9 +1,9 @@
 name: CI/CD Pipeline for Database Deployment
 
 on:
-  push:
-    branches:
-      - main
+#  push:
+#    branches:
+#      - main
 
 jobs:
   deploy:
